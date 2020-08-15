@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Alert Messages</title>
+	<link rel="icon" href="images/logo1.jpg" type="image/gif" sizes="16x16" />
+	<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+
+
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+	<style>
+		body {
+
+
+			background: rgba(110, 105, 105, 0.7) url(images/img4.jpg);
+			background-blend-mode: hard-light;
+			background-size: cover;
+		}
+	</style>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Noto Sans JP', sans-serif;
+		}
+
+
+
+		
+		.wrapper {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.btn_grp {
+			display: flex;
+		}
+
+		.btn_grp .btn {
+			width: 225px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			background: #fff;
+			border-radius: 2px;
+			cursor: pointer;
+			text-transform: uppercase;
+			letter-spacing: 4px;
+			font-size: 20px;
+			margin-bottom: 20px;
+		}
+
+		.btn_grp .btn.btn_success,
+		.alert_item.alert_success {
+			background: #fdf8ae;
+			color: #5a7052;
+			border-radius: 0px 20px 0px 20px;
+
+		}
+
+		.submit {
+			width: 50px;
+			height: 50px;
+			background-color: #fdf8ae;
+			border-style: dotted;
+			box-shadow: 3px 6px 4px rgb(176, 181, 196);
+		}
+
+		.btn_grp .btn.btn_success:hover {
+			background: #cfeec4;
+		}
+
+		.alert_wrapper {
+			position: relative;
+			border-radius: 0px 20px 0px 20px;
+			width: 100%;
+			height: 100%;
+			z-index: 999;
+			visibility: hidden;
+		}
+
+		.alert_backdrop {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #2d333f;
+			opacity: 0.9;
+			z-index: 2;
+		}
+
+		.alert_wrapper .alert_item {
+			z-index: 3;
+			position: fixed;
+			top: -50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: flex;
+			align-items: center;
+			padding: 25px 50px;
+			border-radius: 3px;
+			transition: all 0.2s ease;
+		}
+
+		.alert_wrapper .alert_item .data {
+			margin: 0 50px;
+		}
+
+		.alert_wrapper .alert_item .data .title {
+			font-size: 18px;
+			margin-bottom: 5px;
+		}
+
+		.alert_wrapper .alert_item .data span {
+			font-weight: 700;
+		}
+
+		.alert_wrapper .alert_item .data .sub {
+			font-size: 14px;
+			font-weight: bold;
+			color: rgb(63, 65, 64);
+		}
+
+		.alert_wrapper .alert_item .icon {
+			font-size: 40px;
+		}
+
+		.alert_wrapper .alert_item .close {
+			cursor: pointer;
+		}
+
+		.alert_item.alert_success .close:hover {
+			color: #adc5a5;
+		}
+
+		.alert_wrapper.active {
+			visibility: visible;
+		}
+
+		.alert_wrapper.active .alert_item {
+			top: 50%;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div style="width: 100%;" class="Main background my-0">
+
+		<div class="wrapper">
+			<div class="btn_grp">
+				<div class="btn btn_success" style="font-weight: bold;" , style="font-size: x-large;">N E W S</div>
+			</div>
+		</div>
+
+		<div class="alert_wrapper">
+			<div class="alert_backdrop"></div>
+			<div class="alert_inner">
+				<div class="alert_item alert_success">
+					<div class="icon data_icon">
+						<i class="fa fa-share-square" aria-hidden="true"></i>
+					</div>
+					<div class="data">
+						<p class="title"><span>Connect:</span>
+							With US
+						</p>
+						<p class="sub" >New Updates will Be Comming Soon :</p>
+					</div>
+					<div class="icon close">
+						<form action="index1.html" class="inline">
+							<button class="float-left submit"><i class="fas fa-times"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		var alert_items = document.querySelectorAll(".alert_item");
+		var btns = document.querySelectorAll(".btn");
+		var alert_wrapper = document.querySelector(".alert_wrapper");
+		var close_btns = document.querySelectorAll(".close");
+
+		btns.forEach(function (btn, btn_index) {
+			btn.addEventListener("click", function () {
+				alert_wrapper.classList.add("active");
+
+				alert_items.forEach(function (alert_item, alert_index) {
+					if (btn_index == alert_index) {
+						alert_item.style.top = "50%";
+					}
+					else {
+						alert_item.style.top = "-100%";
+					}
+				})
+			})
+		})
+
+		close_btns.forEach(function (close, close_index) {
+			close.addEventListener("click", function () {
+				alert_wrapper.classList.remove("active");
+
+				alert_items.forEach(function (alert_item, alert_index) {
+					alert_item.style.top = "-20%";
+				})
+			})
+		})
+
+
+	</script>
+
+
+</body>
+
+</html>
